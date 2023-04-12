@@ -18,6 +18,6 @@ provider "aws" {
 # Call the seed_module to build our ADO seed info
 module "bootstrap" {
   source                      = "./modules/bootstrap"
-  name_of_s3_bucket           = "your_globally_unique_bucket_name"
+  name_of_s3_bucket           = "bucket12042023"
   dynamo_db_table_name        = "aws-locks"
 }
