@@ -4,12 +4,12 @@
 
 # Build an S3 bucket to store TF state
 resource "aws_s3_bucket" "state_bucket" {
-  #bucket = var.name_of_s3_bucket
-  bucket = bucket12042023
+  bucket = var.name_of_s3_bucket
+  #bucket = bucket12042023
 
   # Prevents Terraform from destroying or replacing this object - a great safety mechanism
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = false
   }
 
   tags = {
@@ -35,8 +35,8 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "tf_bucket_encrypt
 
 # Build a DynamoDB to use for terraform state locking
 resource "aws_dynamodb_table" "tf_lock_state" {
-  #name = var.dynamo_db_table_name
-  name = aws_lock
+  name = var.dynamo_db_table_name
+  #name = aws_lock
 
   # Pay per request is cheaper for low-i/o applications, like our TF lock state
   billing_mode = "PAY_PER_REQUEST"
@@ -51,8 +51,8 @@ resource "aws_dynamodb_table" "tf_lock_state" {
   }
 
   tags = {
-    Name    = aws_lock
-    #Name    = var.dynamo_db_table_name
+    #Name    = aws_lock
+    Name    = var.dynamo_db_table_name
     BuiltBy = "Terraform"
   }
 }

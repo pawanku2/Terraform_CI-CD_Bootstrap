@@ -12,12 +12,13 @@ terraform {
 
 # Download any stable version in AWS provider of 2.36.0 or higher in 2.36 train
 provider "aws" {
-  region  = "us-east-1"
+  region  = "us-west-2"
 }
 
 # Call the seed_module to build our ADO seed info
 module "bootstrap" {
   source                      = "./modules/bootstrap"
-  name_of_s3_bucket           = "bucket12042023"
+  name_of_s3_bucket           = "bucket1212042023"
   dynamo_db_table_name        = "aws-locks"
+
 }
